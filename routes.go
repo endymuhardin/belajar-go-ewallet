@@ -4,7 +4,7 @@ import "net/http"
 
 func CreateRoutes() *http.ServeMux {
 	router := http.NewServeMux()
-	router.HandleFunc("/hello/{name}", helloHandler)
+	router.HandleFunc("GET /hello/{name}", helloHandler)
 	return router
 }
 
