@@ -6,3 +6,7 @@ type Customer struct {
 	Email string
 	Phone string
 }
+
+type CustomerStorage interface {
+	GetCustomer(string) *Customer
+}
