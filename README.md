@@ -54,3 +54,4 @@ go run .
 * [Cara Membuat HTTP Service di Golang](https://grafana.com/blog/2024/02/09/how-i-write-http-services-in-go-after-13-years/)
 * [Video : Cara Membuat HTTP Service di Golang](https://www.youtube.com/watch?v=0bmiwsv6LaA)
 * [Go HTTP Standard Library](https://www.youtube.com/watch?v=H7tbjKFSg58)
+* [How to structure API project](https://www.youtube.com/watch?v=EqniGcAijDI)

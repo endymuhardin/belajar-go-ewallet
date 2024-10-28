@@ -1,14 +1,18 @@
 package main
 
-import "net/http"
+import (
+	"encoding/json"
+	"net/http"
+)
 
-func CreateRoutes() *http.ServeMux {
+func (app *App) CreateRoutes() *http.ServeMux {
 	router := http.NewServeMux()
-	router.HandleFunc("GET /hello/{name}", helloHandler)
+	router.HandleFunc("GET /hello/{name}", app.helloHandler)
 	return router
 }
 
-func helloHandler(w http.ResponseWriter, r *http.Request) {
+func (app *App) helloHandler(w http.ResponseWriter, r *http.Request) {
 	name := r.PathValue("name")
-	w.Write([]byte("Halo " + name))
+	cust := app.store.GetCustomer(name)
+	json.NewEncoder(w).Encode(cust)
 }
