@@ -1,0 +1,15 @@
+meta {
+  name: customer-info
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}//hello/{{username}}
+  body: none
+  auth: none
+}
+
+vars:pre-request {
+  username: cust-001
+}
