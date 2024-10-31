@@ -13,3 +13,7 @@ get {
 vars:pre-request {
   username: cust-001
 }
+
+assert {
+  res.status: eq 200
+}
