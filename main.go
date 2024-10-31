@@ -5,15 +5,16 @@ import (
 	"net/http"
 
 	"github.com/endymuhardin/belajar-go-ewallet/storage"
+	"github.com/endymuhardin/belajar-go-ewallet/types"
 )
 
 type App struct {
-	store storage.Storage
+	service types.WalletService
 }
 
-func NewApp(store storage.Storage) *App {
+func NewApp(svc types.WalletService) *App {
 	return &App{
-		store: store,
+		service: svc,
 	}
 }
 

@@ -13,6 +13,6 @@ func (app *App) CreateRoutes() *http.ServeMux {
 
 func (app *App) helloHandler(w http.ResponseWriter, r *http.Request) {
 	name := r.PathValue("name")
-	cust := app.store.GetCustomer(name)
+	cust := app.service.GetCustomer(name)
 	json.NewEncoder(w).Encode(cust)
 }
