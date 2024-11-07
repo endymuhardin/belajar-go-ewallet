@@ -20,23 +20,64 @@
 
 ## Setup Database ##
 
-1. Jalankan database dengan docker compose
+Jalankan database dengan docker compose
 
     ```
     docker compose up
     ```
 
-2. Download database driver ke dalam folder `flyway/drivers`
+## Migrasi Skema dengan Flyway ##
+
+1. Download database driver ke dalam folder `flyway/drivers`
 
     ```
     wget -c "https://jdbc.postgresql.org/download/postgresql-42.7.4.jar" -P flyway/drivers/
     ```
 
 
-3. Jalankan migrasi database untuk membuat tabel-tabel
+2. Jalankan migrasi database untuk membuat tabel-tabel
 
     ```
     docker run --rm --network host -v ${PWD}/flyway:/flyway/project flyway/flyway migrate -workingDirectory="project"
+    ```
+
+
+## Migrasi dengan go-migrate ##
+
+```
+docker run -v ${PWD}/go-migrate:/migrations --network host migrate/migrate -path=/migrations/ -database "postgres://ewallet:ewallet123@localhost:5432/ewallet-db?sslmode=disable" up
+```
+
+## Akses ke database ##
+
+1. Connect ke database
+
+    ```
+    docker exec -it belajar-go-ewallet-db-ewallet-1 psql -U ewallet -d ewallet-db
+    ```
+
+2. Melihat skema database
+
+    ```
+    ewallet-db=# \d
+                List of relations
+    Schema |        Name        | Type  |  Owner  
+    --------+--------------------+-------+---------
+    public | customer           | table | ewallet
+    public | schema_migrations  | table | ewallet
+    public | wallet             | table | ewallet
+    public | wallet_transaction | table | ewallet
+    (4 rows)
+    ```
+
+3. Melihat isi tabel
+
+    ```
+    ewallet-db=# select * from schema_migrations ;
+    version   | dirty 
+    ------------+-------
+    2024110701 | f
+    (1 row)
     ```
 
 ## Menjalankan Aplikasi ##
