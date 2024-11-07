@@ -28,7 +28,11 @@ func NewPostgresStorage(host string, port string, username string, password stri
 	return &PostgresStorage{dbpool: dbpool}
 }
 
-func (s *PostgresStorage) GetCustomer(id string) *types.Customer {
+func (s *PostgresStorage) Shutdown() {
+	defer s.dbpool.Close()
+}
+
+func (s *PostgresStorage) GetCustomer(id string) (*types.Customer, error) {
 	query := "select * from customer where id = @id"
 	args := pgx.NamedArgs{
 		"id": id,
@@ -37,17 +41,17 @@ func (s *PostgresStorage) GetCustomer(id string) *types.Customer {
 
 	if err != nil {
 		log.Fatalf("unable to query users: %s", err)
-		return nil
+		return nil, err
 	}
 
 	customer, err := pgx.CollectExactlyOneRow(rows, pgx.RowToStructByName[types.Customer])
 
 	if err != nil {
 		log.Fatalf("unable to get rows to struct: %s", err)
-		return nil
+		return nil, err
 	}
 
-	return &customer
+	return &customer, nil
 }
 
 func (s *PostgresStorage) GetWalletByCustomerId(string) *types.Wallet {

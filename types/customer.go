@@ -8,5 +8,5 @@ type Customer struct {
 }
 
 type CustomerStorage interface {
-	GetCustomer(string) *Customer
+	GetCustomer(string) (*Customer, error)
 }

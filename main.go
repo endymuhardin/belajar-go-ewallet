@@ -39,4 +39,6 @@ func main() {
 
 	log.Println("Starting server at " + serverPort)
 	server.ListenAndServe()
+
+	pgstore.Shutdown()
 }
