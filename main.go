@@ -24,10 +24,10 @@ func main() {
 
 	pgstore := storage.NewPostgresStorage(
 		"localhost",
-		"54321",
+		"5432",
 		"ewallet",
 		"ewallet123",
-		"ewalletdb",
+		"ewallet-db",
 	)
 
 	app := NewApp(pgstore)
