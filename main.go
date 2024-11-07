@@ -34,7 +34,7 @@ func main() {
 
 	server := http.Server{
 		Addr:    serverPort,
-		Handler: app.CreateRoutes(),
+		Handler: createRoutes(app),
 	}
 
 	log.Println("Starting server at " + serverPort)
