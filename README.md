@@ -18,6 +18,27 @@
 
     * [PostgreSQL Driver](https://github.com/jackc/pgx)
 
+## Setup Database ##
+
+1. Jalankan database dengan docker compose
+
+    ```
+    docker compose up
+    ```
+
+2. Download database driver ke dalam folder `flyway/drivers`
+
+    ```
+    wget -c "https://jdbc.postgresql.org/download/postgresql-42.7.4.jar" -P flyway/drivers/
+    ```
+
+
+3. Jalankan migrasi database untuk membuat tabel-tabel
+
+    ```
+    docker run --rm --network host -v ${PWD}/flyway:/flyway/project flyway/flyway migrate -workingDirectory="project"
+    ```
+
 ## Menjalankan Aplikasi ##
 
 ```
