@@ -10,6 +10,7 @@ import (
 	pgxdecimal "github.com/jackc/pgx-shopspring-decimal"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/shopspring/decimal"
 )
 
 type PostgresStorage struct {
@@ -92,14 +93,14 @@ func (s *PostgresStorage) GetWalletByCustomerId(id string) (*types.Wallet, error
 	return walletTable.ToWallet(), nil
 }
 
-func (s *PostgresStorage) TopupWallet(w *types.Wallet, amount uint64) error {
+func (s *PostgresStorage) TopupWallet(w *types.Wallet, amount decimal.Decimal) error {
 	return nil
 }
 
-func (s *PostgresStorage) Payment(w *types.Wallet, product string, amount uint64) error {
+func (s *PostgresStorage) Payment(w *types.Wallet, product string, amount decimal.Decimal) error {
 	return nil
 }
 
-func (s *PostgresStorage) Purchase(w *types.Wallet, merchant string, remarks string, amount uint64) error {
+func (s *PostgresStorage) Purchase(w *types.Wallet, merchant string, remarks string, amount decimal.Decimal) error {
 	return nil
 }

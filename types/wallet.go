@@ -23,9 +23,9 @@ type WalletTable struct {
 
 type WalletStorage interface {
 	GetWalletByCustomerId(string) (*Wallet, error)
-	TopupWallet(w *Wallet, amount uint64) error
-	Payment(w *Wallet, product string, amount uint64) error
-	Purchase(w *Wallet, merchant string, remarks string, amount uint64) error
+	TopupWallet(w *Wallet, amount decimal.Decimal) error
+	Payment(w *Wallet, product string, amount decimal.Decimal) error
+	Purchase(w *Wallet, merchant string, remarks string, amount decimal.Decimal) error
 }
 
 func (walletTable WalletTable) ToWallet() *Wallet {
