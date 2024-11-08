@@ -89,21 +89,7 @@ func (s *PostgresStorage) GetWalletByCustomerId(id string) (*types.Wallet, error
 
 	log.Printf("Balance : %s", walletTable.Balance.String())
 
-	cust := &types.Customer{
-		ID:    walletTable.CustomerId,
-		Name:  walletTable.CustomerName,
-		Email: walletTable.CustomerEmail,
-		Phone: walletTable.CustomerPhone,
-	}
-
-	wallet := types.Wallet{
-		ID:       walletTable.Id,
-		Customer: *cust,
-		Name:     walletTable.Name,
-		Balance:  walletTable.Balance,
-	}
-
-	return &wallet, nil
+	return walletTable.ToWallet(), nil
 }
 
 func (s *PostgresStorage) TopupWallet(w *types.Wallet, amount uint64) error {

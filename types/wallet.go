@@ -27,3 +27,21 @@ type WalletStorage interface {
 	Payment(w *Wallet, product string, amount uint64) error
 	Purchase(w *Wallet, merchant string, remarks string, amount uint64) error
 }
+
+func (walletTable WalletTable) ToWallet() *Wallet {
+	cust := Customer{
+		ID:    walletTable.CustomerId,
+		Name:  walletTable.CustomerName,
+		Email: walletTable.CustomerEmail,
+		Phone: walletTable.CustomerPhone,
+	}
+
+	wallet := Wallet{
+		ID:       walletTable.Id,
+		Customer: cust,
+		Name:     walletTable.Name,
+		Balance:  walletTable.Balance,
+	}
+
+	return &wallet
+}
