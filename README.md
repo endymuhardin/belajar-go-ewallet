@@ -109,6 +109,11 @@ go run .
 
 5. Membuat kode program untuk akses database
 
+## To Do List ##
+
+* Loading config dari external file dan OS Env
+* Log debug : supaya logging statement bisa dimatikan via config
+* Proper error handling
 
 ## Referensi ##
 
