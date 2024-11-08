@@ -12,7 +12,6 @@
 
     * [Package net/http](https://pkg.go.dev/net/http)
     * [Package html/template](https://pkg.go.dev/html/template)
-    * [Package database/sql](https://pkg.go.dev/database/sql)
 
 * PostgreSQL 16
 
@@ -22,9 +21,9 @@
 
 Jalankan database dengan docker compose
 
-    ```
-    docker compose up
-    ```
+```
+docker compose up
+```
 
 ## Migrasi Skema dengan Flyway ##
 
